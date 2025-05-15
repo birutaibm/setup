@@ -5,7 +5,7 @@
 set -e  # Encerra o script se algum comando falhar
 
 echo "Iniciando configuração do Ubuntu 24.04..."
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+SCRIPT_DIR=$(pwd)
 
 # Atualizar o sistema
 echo "Atualizando o sistema..."
@@ -35,14 +35,6 @@ sudo apt install -y fish
 echo "Configurando Fish como shell padrão..."
 chsh -s $(which fish)
 
-# Instalar Fisher (plugin manager para Fish)
-echo "Instalando Fisher..."
-fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-
-# Instalar ASDF
-echo "Instalando ASDF..."
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
-
 # Configurar o terminal para usar a fonte Nerd Font instalada
 if [ -d ~/.config/gnome-terminal ]; then
     # Para Gnome Terminal (Ubuntu padrão)
@@ -52,12 +44,18 @@ if [ -d ~/.config/gnome-terminal ]; then
     echo "Terminal configurado para usar FiraCode Nerd Font"
 fi
 
+# Instalar ASDF
+echo "Instalando ASDF..."
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
 # Instalar plugin Node.js para ASDF
 echo "Instalando plugin Node.js para ASDF..."
 fish -c "source ~/.asdf/asdf.fish && asdf plugin add nodejs"
 fish -c "source ~/.asdf/asdf.fish && asdf install nodejs latest"
 fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
 
+# Instalar Fisher (plugin manager para Fish)
+echo "Instalando Fisher..."
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 # Instalar Tide (tema para Fish)
 echo "Instalando o tema Tide para Fish..."
 fish -c "fisher install IlanCosman/tide@v5"
