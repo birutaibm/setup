@@ -5,6 +5,7 @@
 set -e  # Encerra o script se algum comando falhar
 
 echo "Iniciando configuração do Ubuntu 24.04..."
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 # Atualizar o sistema
 echo "Atualizando o sistema..."
@@ -17,12 +18,15 @@ sudo apt install -y curl wget git build-essential unzip
 # Instalar as fontes Nerd Fonts para suportar os ícones
 echo "Instalando fontes Nerd Fonts para suportar os ícones..."
 mkdir -p ~/.local/share/fonts
-cd /tmp
-# Baixar e instalar Fira Code Nerd Font (uma boa fonte para programação com ícones)
-wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip
-unzip -q FiraCode.zip -d ~/.local/share/fonts/FiraCode
-# Atualizar cache de fontes
-fc-cache -f
+# Usar subshell (comando entre parênteses) evita mudar o diretório onde todo o resto do script é executado
+(
+  cd /tmp
+  # Baixar e instalar Fira Code Nerd Font (uma boa fonte para programação com ícones)
+  wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip
+  unzip -q FiraCode.zip -d ~/.local/share/fonts/FiraCode
+  # Atualizar cache de fontes
+  fc-cache -f
+)
 
 # Instalar Fish Shell
 echo "Instalando Fish Shell..."
@@ -63,7 +67,6 @@ fish -c "fisher install IlanCosman/tide@v5"
 
 # Configurar Tide
 mkdir -p ~/.config/fish
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cat "$SCRIPT_DIR/fish/exported-tide-config.txt" "$SCRIPT_DIR/fish/asdf-config.txt" > ~/.config/fish/config.fish
 
 # Instalar Docker
