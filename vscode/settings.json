@@ -1,0 +1,142 @@
+{
+  // Define o tema do VSCode
+  "workbench.colorTheme": "Dracula Theme Soft",
+  // Define o tema dos ícones na sidebar
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.labelFormat": "short",
+  "workbench.colorCustomizations": {
+    "editor.background": "#191c27",
+    "terminal.background": "#191c27"
+  },
+  // Configura tamanho e família da fonte
+  "editor.tabSize": 2,
+  "editor.fontSize": 18,
+  "editor.lineHeight": 24,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  // Aplica um sinal visual na esquerda da linha selecionada
+  "editor.renderLineHighlight": "gutter",
+  "editor.parameterHints.enabled": false,
+
+  // Aplica linhas verticais para lembrar de quebrar linha em códigos muito grandes
+  "editor.rulers": [80, 120],
+  "editor.formatOnSave": false,
+
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Aumenta a fonte do terminal
+  "terminal.integrated.fontSize": 14,
+  "extensions.ignoreRecommendations": false,
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "nunjucks": "html"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "nunjucks": "html"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "breadcrumbs.enabled": true,
+  "git.enableSmartCommit": true,
+  "explorer.sortOrder": "filesFirst",
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "liveshare.featureSet": "insiders",
+
+  "typescript.tsserver.log": "verbose",
+  "editor.suggestSelection": "first",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/node_modules/*/**": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "cSpell.enableFiletypes": ["!jsonc"],
+  "cSpell.userWords": ["browserslist", "digitable", "iphone", "transpilar"],
+  "material-icon-theme.folders.associations": {
+    "infra": "app",
+    "entities": "class",
+    "schemas": "class",
+    "typeorm": "database",
+    "repositories": "mappings",
+    "http": "container",
+    "migrations": "tools",
+    "modules": "components",
+    "implementations": "core",
+    "dtos": "typescript",
+    "fakes": "mock",
+    "websockets": "pipe"
+  },
+  "material-icon-theme.files.associations": {
+    "ormconfig.json": "database",
+    "tsconfig.json": "tune"
+  },
+  "files.autoSave": "off",
+  "cSpell.language": "en,pt-BR",
+  "editor.linkedEditing": true,
+  "git.autofetch": true,
+  "vetur.format.defaultFormatter.html": "none",
+  "git.confirmSync": false,
+  "csv-preview.lineNumbers": "source",
+  "csv-preview.separator": ";",
+  "csv-preview.resizeColumns": "all",
+  "gitlens.codeLens.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "window.zoomLevel": -1,
+  "prettier.embeddedLanguageFormatting": "off",
+  "prettier.enable": false,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "powermode.presets": "flames",
+  "powermode.enabled": true,
+  "powermode.combo.threshold": 5,
+  "editor.experimental.useCustomCodeActionMenu": true,
+  "editor.stickyScroll.enabled": true,
+  "diffEditor.maxComputationTime": 0,
+  "accessibility.voice.speechLanguage": "pt-BR",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    },
+    "fish": {
+      "path": "fish"
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    }
+  },
+  "chat.commandCenter.enabled": false,
+  "explorer.openEditors.sortOrder": "fullPath",
+  "gitlens.views.commitDetails.files.layout": "list"
+}

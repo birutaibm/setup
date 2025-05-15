@@ -1,0 +1,18 @@
+
+# Função para mudar automaticamente a versão do Node.js baseado no arquivo .nvmrc
+function auto_node_version --on-variable PWD
+    if test -f ".nvmrc"
+        set node_version (cat .nvmrc)
+        echo "Encontrado arquivo .nvmrc com a versão: $node_version"
+        asdf local nodejs $node_version
+    end
+end
+
+# ASDF configuration
+source ~/.asdf/asdf.fish
+
+# Inicializar ASDF completions
+mkdir -p ~/.config/fish/completions
+ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+
+

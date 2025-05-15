@@ -1,0 +1,50 @@
+{
+	"Database Transaction": {
+		"prefix": "dbt",
+		"body": [
+			"const trx = await Database.beginTransaction();",
+			"try {",
+			"  $TM_SELECTED_TEXT$0",
+			"  await trx.commit();",
+			"} catch (error) {",
+			"  await trx.rollback();",
+			"}",
+		],
+		"description": "Create database transaction"
+	},
+	"Vow Test": {
+		"prefix": "test_vow",
+		"body": [
+			"test('', async ({ assert }) => {",
+			"	// create scenario",
+			"	// make action",
+			"	// test results",
+			"	// destroy scenario",
+			"}).timeout(0);",
+		],
+		"description": "Create basic estructure of Vow Test"
+	},
+	"Production Only": {
+		"prefix": "prod_only",
+		"body": [
+			"if (process.env.ENVIRONMENT === 'PRODUCTION') {",
+			"  $TM_SELECTED_TEXT$0",
+			"} else {",
+			"  console.log('$1 runs only in production');",
+			"}",
+		],
+		"description": "Restrict code to run only in production"
+	},
+	"Paginate query": {
+		"prefix": "paginated",
+		"body": [
+      "const per_page = 1000;",
+      "const pages = Math.ceil(count / per_page);",
+      "for (let page = 0; page < pages; page++) {",
+      "  const $1 = await $TM_SELECTED_TEXT$0.limit(per_page).offset(page * per_page).fetch();",
+      "  ",
+      "}",
+		],
+		"description": "Makes pagination on query"
+	}
+}
