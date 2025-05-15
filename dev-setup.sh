@@ -63,7 +63,8 @@ fish -c "fisher install IlanCosman/tide@v5"
 
 # Configurar Tide
 mkdir -p ~/.config/fish
-cat ./fish/exported-tide-config.txt ./fish/asdf-config.txt > ~/.config/fish/config.fish
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cat "$SCRIPT_DIR/fish/exported-tide-config.txt" "$SCRIPT_DIR/fish/asdf-config.txt" > ~/.config/fish/config.fish
 
 # Instalar Docker
 echo "Instalando Docker..."
@@ -95,7 +96,7 @@ mkdir -p ~/.config/Code/User/
 rsync -av --exclude 'extensions.txt' ./vscode/ ~/.config/Code/User/
 
 # Instalar extensões do VS Code (assumindo que existe um arquivo extensions.txt no mesmo diretório)
-if [ -f "./vscode/extensions.txt" ]; then
+if [ -f "$SCRIPT_DIR/vscode/extensions.txt" ]; then
   echo "Instalando extensões do VS Code..."
   cat ./extensions.txt | while read extension || [[ -n $extension ]]; do
     if [ ! -z "$extension" ]; then

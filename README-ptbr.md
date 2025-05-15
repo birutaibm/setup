@@ -1,6 +1,6 @@
 ## Avisos iniciais
 
-Em primeiro lugar, deixemos que este script foi feito para atender as minhas necessidades. Quem tiver necessidades e preferencias iguais é livre para utilizar os mesmos scripts. Mas como cada pessoa tem suas próprias preferencias, sinta-se a vontade para fazer um fork e adaptar tudo às suas necessidades.
+Em primeiro lugar, deixemos claro que este script foi feito para atender as minhas necessidades. Quem tiver necessidades e preferencias iguais é livre para utilizar os mesmos scripts. Mas como cada pessoa tem suas próprias preferencias, sinta-se a vontade para fazer um fork e adaptar tudo às suas necessidades.
 
 Este script será executado em um Ubuntu 24.04 recém instalado. Dependendo de como está o seu sistema, também podem ser necessários ajustes adicionais.
 
