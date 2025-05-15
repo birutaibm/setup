@@ -18,52 +18,49 @@ sudo apt install -y curl wget git build-essential unzip
 # Instalar as fontes Nerd Fonts para suportar os ícones
 echo "Instalando fontes Nerd Fonts para suportar os ícones..."
 mkdir -p ~/.local/share/fonts
-# Usar subshell (comando entre parênteses) evita mudar o diretório onde todo o resto do script é executado
-(
-  cd /tmp
-  # Baixar e instalar Fira Code Nerd Font (uma boa fonte para programação com ícones)
-  wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip
-  unzip -q FiraCode.zip -d ~/.local/share/fonts/FiraCode
-  # Atualizar cache de fontes
-  fc-cache -f
+cd /tmp
+# Baixar e instalar Fira Code Nerd Font (uma boa fonte para programação com ícones)
+wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip
+unzip -q FiraCode.zip -d ~/.local/share/fonts/FiraCode
+# Atualizar cache de fontes
+fc-cache -f
 
-  # Instalar Fish Shell
-  echo "Instalando Fish Shell..."
-  sudo apt-add-repository ppa:fish-shell/release-3 -y
-  sudo apt update
-  sudo apt install -y fish
+# Instalar Fish Shell
+echo "Instalando Fish Shell..."
+sudo apt-add-repository ppa:fish-shell/release-3 -y
+sudo apt update
+sudo apt install -y fish
 
-  # Definir Fish como shell padrão
-  echo "Configurando Fish como shell padrão..."
-  chsh -s $(which fish)
+# Definir Fish como shell padrão
+echo "Configurando Fish como shell padrão..."
+chsh -s $(which fish)
 
-  # Instalar Fisher (plugin manager para Fish)
-  echo "Instalando Fisher..."
-  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+# Instalar Fisher (plugin manager para Fish)
+echo "Instalando Fisher..."
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 
-  # Instalar ASDF
-  echo "Instalando ASDF..."
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
+# Instalar ASDF
+echo "Instalando ASDF..."
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
 
-  # Configurar o terminal para usar a fonte Nerd Font instalada
-  if [ -d ~/.config/gnome-terminal ]; then
-      # Para Gnome Terminal (Ubuntu padrão)
-      PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
-      gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ font 'FiraCode Nerd Font 12'
-      gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ use-system-font false
-      echo "Terminal configurado para usar FiraCode Nerd Font"
-  fi
+# Configurar o terminal para usar a fonte Nerd Font instalada
+if [ -d ~/.config/gnome-terminal ]; then
+    # Para Gnome Terminal (Ubuntu padrão)
+    PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
+    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ font 'FiraCode Nerd Font 12'
+    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ use-system-font false
+    echo "Terminal configurado para usar FiraCode Nerd Font"
+fi
 
-  # Instalar plugin Node.js para ASDF
-  echo "Instalando plugin Node.js para ASDF..."
-  fish -c "source ~/.asdf/asdf.fish && asdf plugin add nodejs"
-  fish -c "source ~/.asdf/asdf.fish && asdf install nodejs latest"
-  fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
+# Instalar plugin Node.js para ASDF
+echo "Instalando plugin Node.js para ASDF..."
+fish -c "source ~/.asdf/asdf.fish && asdf plugin add nodejs"
+fish -c "source ~/.asdf/asdf.fish && asdf install nodejs latest"
+fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
 
-  # Instalar Tide (tema para Fish)
-  echo "Instalando o tema Tide para Fish..."
-  fish -c "fisher install IlanCosman/tide@v5"
-)
+# Instalar Tide (tema para Fish)
+echo "Instalando o tema Tide para Fish..."
+fish -c "fisher install IlanCosman/tide@v5"
 
 # Configurar Tide
 mkdir -p ~/.config/fish
@@ -96,12 +93,12 @@ echo "Configurando VS Code..."
 mkdir -p ~/.config/Code/User/
 
 # Copiar configurações do vscode
-rsync -av --exclude 'extensions.txt' ./vscode/ ~/.config/Code/User/
+rsync -av --exclude 'extensions.txt' "$SCRIPT_DIR/vscode/" ~/.config/Code/User/
 
 # Instalar extensões do VS Code (assumindo que existe um arquivo extensions.txt no mesmo diretório)
 if [ -f "$SCRIPT_DIR/vscode/extensions.txt" ]; then
   echo "Instalando extensões do VS Code..."
-  cat ./extensions.txt | while read extension || [[ -n $extension ]]; do
+  cat "$SCRIPT_DIR/vscode/extensions.txt" | while read extension || [[ -n $extension ]]; do
     if [ ! -z "$extension" ]; then
       code --install-extension "$extension" --force
     fi
