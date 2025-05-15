@@ -26,44 +26,44 @@ mkdir -p ~/.local/share/fonts
   unzip -q FiraCode.zip -d ~/.local/share/fonts/FiraCode
   # Atualizar cache de fontes
   fc-cache -f
+
+  # Instalar Fish Shell
+  echo "Instalando Fish Shell..."
+  sudo apt-add-repository ppa:fish-shell/release-3 -y
+  sudo apt update
+  sudo apt install -y fish
+
+  # Definir Fish como shell padrão
+  echo "Configurando Fish como shell padrão..."
+  chsh -s $(which fish)
+
+  # Instalar Fisher (plugin manager para Fish)
+  echo "Instalando Fisher..."
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+
+  # Instalar ASDF
+  echo "Instalando ASDF..."
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
+
+  # Configurar o terminal para usar a fonte Nerd Font instalada
+  if [ -d ~/.config/gnome-terminal ]; then
+      # Para Gnome Terminal (Ubuntu padrão)
+      PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
+      gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ font 'FiraCode Nerd Font 12'
+      gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ use-system-font false
+      echo "Terminal configurado para usar FiraCode Nerd Font"
+  fi
+
+  # Instalar plugin Node.js para ASDF
+  echo "Instalando plugin Node.js para ASDF..."
+  fish -c "source ~/.asdf/asdf.fish && asdf plugin add nodejs"
+  fish -c "source ~/.asdf/asdf.fish && asdf install nodejs latest"
+  fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
+
+  # Instalar Tide (tema para Fish)
+  echo "Instalando o tema Tide para Fish..."
+  fish -c "fisher install IlanCosman/tide@v5"
 )
-
-# Instalar Fish Shell
-echo "Instalando Fish Shell..."
-sudo apt-add-repository ppa:fish-shell/release-3 -y
-sudo apt update
-sudo apt install -y fish
-
-# Definir Fish como shell padrão
-echo "Configurando Fish como shell padrão..."
-chsh -s $(which fish)
-
-# Instalar Fisher (plugin manager para Fish)
-echo "Instalando Fisher..."
-fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-
-# Instalar ASDF
-echo "Instalando ASDF..."
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.0
-
-# Configurar o terminal para usar a fonte Nerd Font instalada
-if [ -d ~/.config/gnome-terminal ]; then
-    # Para Gnome Terminal (Ubuntu padrão)
-    PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
-    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ font 'FiraCode Nerd Font 12'
-    gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/ use-system-font false
-    echo "Terminal configurado para usar FiraCode Nerd Font"
-fi
-
-# Instalar plugin Node.js para ASDF
-echo "Instalando plugin Node.js para ASDF..."
-fish -c "source ~/.asdf/asdf.fish && asdf plugin add nodejs"
-fish -c "source ~/.asdf/asdf.fish && asdf install nodejs latest"
-fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
-
-# Instalar Tide (tema para Fish)
-echo "Instalando o tema Tide para Fish..."
-fish -c "fisher install IlanCosman/tide@v5"
 
 # Configurar Tide
 mkdir -p ~/.config/fish
