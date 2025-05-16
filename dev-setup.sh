@@ -55,7 +55,7 @@ fish -c "source ~/.asdf/asdf.fish && asdf global nodejs latest"
 
 # Instalar Fisher (plugin manager para Fish)
 echo "Instalando Fisher..."
-fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; fisher install jorgebucaran/fisher"
 # Instalar Tide (tema para Fish)
 echo "Instalando o tema Tide para Fish..."
 fish -c "fisher install IlanCosman/tide@v5"
