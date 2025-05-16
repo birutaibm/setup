@@ -82,9 +82,10 @@ sudo systemctl enable containerd.service
 # Instalar VS Code
 echo "Instalando VS Code..."
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+echo "code code/accepted-ms-repo boolean true" | sudo debconf-set-selections
+echo "msttcorefonts msttcorefonts/accepted-mscorefonts-eula boolean true" | sudo debconf-set-selections
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" -y
 sudo apt update
-echo "code code/accept-eula select true" | sudo debconf-set-selections
 DEBIAN_FRONTEND=noninteractive sudo apt install -y code
 
 # Configurar VS Code
