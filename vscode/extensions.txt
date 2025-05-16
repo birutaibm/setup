@@ -24,4 +24,3 @@ vue.volar
 wix.vscode-import-cost
 wraith13.bracket-lens
 yzane.markdown-pdf
-znck.vue
