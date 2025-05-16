@@ -13,7 +13,7 @@
   "editor.tabSize": 2,
   "editor.fontSize": 18,
   "editor.lineHeight": 24,
-  "editor.fontFamily": "FiraCode",
+  "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
   // Aplica um sinal visual na esquerda da linha selecionada
   "editor.renderLineHighlight": "gutter",
