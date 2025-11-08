@@ -1,4 +1,3 @@
-codeium.codeium
 dbaeumer.vscode-eslint
 dracula-theme.theme-dracula
 eamodio.gitlens

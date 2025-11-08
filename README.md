@@ -14,7 +14,7 @@ On Ubuntu, these are located in the `~/.config/Code/User/` directory. In my case
 
 The file `vscode/extensions.txt` lists the extensions I'm currently using in my VSCode and that will be installed on the new system. If you'd like to create your own list, use the command `code --list-extensions > extensions.txt`. This is a good time to review your extensions and remove any you no longer want to use.
 
-If you're already using the `fish` terminal with the `tide` theme and want to keep the same configuration in your new installation, run the script `./export-tide-config.sh` on your current system and copy the output into the file `fish/exported-tide-config.txt`. The version in this repository reflects what I'm currently using. If you prefer to install it as is and adjust the configuration later, you can use the `tide config` command in your new terminal (after running the script and rebooting the system).
+If you're already using the `fish` terminal with the `tide` theme and want to keep the same configuration in your new installation, run the script `./export-tide-config.sh` on your current system and copy the output into the file `fish/exported-tide-config.txt`. The version in this repository reflects what I'm currently using. If you prefer to install it as is and adjust the configuration later, you can use the `tide configure` command in your new terminal (after running the script and rebooting the system).
 
 ## Instructions
 
@@ -32,3 +32,12 @@ At the end of the process, you will have `fish` configured as your default termi
 Docker will be installed and ready to use, including Docker Compose.
 
 VSCode will be installed and configured, including your extensions.
+
+## Next Steps
+
+Some important points to note before you start:
+
+- At some point during the installation, you will be asked to manually confirm whether to proceed (Thanks, Microsoft). I've tried various ways to automate this, but haven't succeeded. If you manage to do so, please open an issue with your solution.
+- Some tide (fish) configurations seem to be lost, so you will probably need to run tide configure after the installation.
+- You will likely need a database client and an API tool (such as Postman). These are not included in the installation, so you may want to add them to your script before executing.
+- Finally, depending on your VSCode extensions, you may need to perform additional manual configuration (such as logging in, inserting keys, etc.).
